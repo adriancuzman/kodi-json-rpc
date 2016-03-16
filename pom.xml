@@ -14,14 +14,18 @@
 
 	<name>Kodi JSON RPC</name>
 	<description>This library is the result of freezy's Kodi JSON introspection, merged with dereulenspiegel's adoption without android, and patched to Kodi 16 Jarvis.</description>
+
 	<!-- https://github.com/freezy/xbmc-jsonrpclib-android -->
 	<!-- https://github.com/dereulenspiegel/xbmc-api -->
-
 	<scm>
 		<url>https://github.com/tinyMediaManager/${project.artifactId}</url>
 		<connection>scm:git:git@github.com:tinyMediaManager/${project.artifactId}.git</connection>
 		<developerConnection>scm:git:git@github.com:tinyMediaManager/${project.artifactId}.git</developerConnection>
 	</scm>
+
+	<properties>
+		<subpackages>org.xbmc</subpackages><!-- override javadoc package from parent -->
+	</properties>
 
 	<dependencies>
 		<dependency>
