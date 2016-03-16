@@ -23,10 +23,6 @@
 		<developerConnection>scm:git:git@github.com:tinyMediaManager/${project.artifactId}.git</developerConnection>
 	</scm>
 
-	<properties>
-		<subpackages>org.xbmc</subpackages><!-- override javadoc package from parent -->
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
