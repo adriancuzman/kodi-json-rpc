@@ -26,29 +26,29 @@ import org.xbmc.android.jsonrpc.api.AbstractCall;
 /**
  * Implementing classes are called with the result of an API call.
  * <p>
- * Use the {@link ConnectionManager} to initiate API calls by running the 
- * {@link ConnectionManager#call(AbstractCall, ApiCallback)} method.
+ * Use the {@link ConnectionManager} to initiate API calls by running the {@link ConnectionManager#call(AbstractCall, ApiCallback)} method.
  *
  * @author freezy <freezy@xbmc.org>
  */
 public interface ApiCallback<T> {
-	
-	/**
-	 * A successful response has been returned by JSON-RPC and was serialized 
-	 * into our model.
-	 * <p>
-	 * Use {@link AbstractCall#getResult()} or {@link AbstractCall#getResults()}
-	 * in order to obtain the result of the API call.
-	 * 
-	 * @param call Original API call containing the response.
-	 */
-	public abstract void onResponse(AbstractCall<T> call);
-	
-	/**
-	 * An error has occurred.
-	 * 
-	 * @param message Translated error message
-	 * @param message Translated error hint
-	 */
-	public abstract void onError(int code, String message, String hint);
+
+  /**
+   * A successful response has been returned by JSON-RPC and was serialized into our model.
+   * <p>
+   * Use {@link AbstractCall#getResult()} or {@link AbstractCall#getResults()} in order to obtain the result of the API call.
+   * 
+   * @param call
+   *          Original API call containing the response.
+   */
+  public abstract void onResponse(AbstractCall<T> call);
+
+  /**
+   * An error has occurred.
+   * 
+   * @param message
+   *          Translated error message
+   * @param message
+   *          Translated error hint
+   */
+  public abstract void onError(int code, String message, String hint);
 }

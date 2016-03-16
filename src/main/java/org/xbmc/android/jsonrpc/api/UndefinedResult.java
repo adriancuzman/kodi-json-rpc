@@ -21,10 +21,7 @@
 
 package org.xbmc.android.jsonrpc.api;
 
-import java.io.IOException;
-
 import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.node.ObjectNode;
 
@@ -32,45 +29,49 @@ import org.codehaus.jackson.node.ObjectNode;
  * Some methods return undefined results, this is their response container.
  * <p/>
  * For v3, the methods returning undefined results are:
- * <ul><li><tt>JSONRPC.Introspect</tt></li>
- *     <li><tt>XBMC.GetInfoBooleans</tt></li>
- *     <li><tt>XBMC.GetInfoLabels</tt></li></ul>
+ * <ul>
+ * <li><tt>JSONRPC.Introspect</tt></li>
+ * <li><tt>XBMC.GetInfoBooleans</tt></li>
+ * <li><tt>XBMC.GetInfoLabels</tt></li>
+ * </ul>
  *
- * It's up to the application to correctly parse those response types, if
- * necessary.
+ * It's up to the application to correctly parse those response types, if necessary.
  *
  * @author freezy <freezy@xbmc.org>
  */
 public class UndefinedResult {
 
-	private final static String TAG = UndefinedResult.class.getSimpleName();
-	private final static ObjectMapper OM = new ObjectMapper();
+  private final static String       TAG = UndefinedResult.class.getSimpleName();
+  private final static ObjectMapper OM  = new ObjectMapper();
 
-	private final JsonNode mResponse;
+  private final JsonNode            mResponse;
 
-	/**
-	 * Class constructor.
-	 * @param node Root node of the response object.
-	 */
-	public UndefinedResult(JsonNode node) {
-		mResponse = node;
-	}
+  /**
+   * Class constructor.
+   * 
+   * @param node
+   *          Root node of the response object.
+   */
+  public UndefinedResult(JsonNode node) {
+    mResponse = node;
+  }
 
-	/**
-	 * Returns the root response object.
-	 *
-	 * @return Root object of the response.
-	 */
-	public JsonNode getResponse() {
-		return mResponse;
-	}
+  /**
+   * Returns the root response object.
+   *
+   * @return Root object of the response.
+   */
+  public JsonNode getResponse() {
+    return mResponse;
+  }
 
-	/**
-	 * Returns the <tt>result</tt> node of the response object.
-	 * @return The <tt>result</tt> node of the response object.
-	 */
-	public ObjectNode getResult() {
-		return (ObjectNode)mResponse.get("result");
-	}
+  /**
+   * Returns the <tt>result</tt> node of the response object.
+   * 
+   * @return The <tt>result</tt> node of the response object.
+   */
+  public ObjectNode getResult() {
+    return (ObjectNode) mResponse.get("result");
+  }
 
 }

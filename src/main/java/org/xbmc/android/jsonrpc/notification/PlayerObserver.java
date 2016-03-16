@@ -28,21 +28,24 @@ import org.xbmc.android.jsonrpc.notification.PlayerEvent.SpeedChanged;
 import org.xbmc.android.jsonrpc.notification.PlayerEvent.Stop;
 
 /**
- *  This is used as callback where not every type of notification needs to be
- *  implemented.
- *  
+ * This is used as callback where not every type of notification needs to be implemented.
+ * 
  * @author freezy <freezy@xbmc.org>
  */
 public abstract class PlayerObserver {
-	
-	public void onPlay(Play notification) {
-	}
-	public void onPause(Pause notification) {
-	}
-	public void onStop(Stop notification) {
-	}
-	public void onSpeedChanged(SpeedChanged notification) {
-	}
-	public void onSeek(Seek notification) {
-	}
+
+  public void onPlay(Play notification) {
+  }
+
+  public void onPause(Pause notification) {
+  }
+
+  public void onStop(Stop notification) {
+  }
+
+  public void onSpeedChanged(SpeedChanged notification) {
+  }
+
+  public void onSeek(Seek notification) {
+  }
 }

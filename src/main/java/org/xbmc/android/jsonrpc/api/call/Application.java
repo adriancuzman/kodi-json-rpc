@@ -27,150 +27,157 @@ import org.xbmc.android.jsonrpc.api.model.GlobalModel;
 
 public final class Application {
 
-	/**
-	 * Retrieves the values of the given properties.
-	 * <p/>
-	 * This class represents the API method <tt>Application.GetProperties</tt>
-	 * <p/>
-	 * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
-	 */
-	public static class GetProperties extends AbstractCall<ApplicationModel.PropertyValue> {
-		public final static String API_TYPE = "Application.GetProperties";
+  /**
+   * Retrieves the values of the given properties.
+   * <p/>
+   * This class represents the API method <tt>Application.GetProperties</tt>
+   * <p/>
+   * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
+   */
+  public static class GetProperties extends AbstractCall<ApplicationModel.PropertyValue> {
+    public final static String API_TYPE = "Application.GetProperties";
 
-		/**
-		 * Retrieves the values of the given properties.
-		 * @param properties  One or more of: <tt>volume</tt>, <tt>muted</tt>, <tt>name</tt>, <tt>version</tt>. See constants at {@link ApplicationModel.PropertyName}.
-		 */
-		public GetProperties(String... properties) {
-			super();
-			addParameter("properties", properties);
-		}
+    /**
+     * Retrieves the values of the given properties.
+     * 
+     * @param properties
+     *          One or more of: <tt>volume</tt>, <tt>muted</tt>, <tt>name</tt>, <tt>version</tt>. See constants at
+     *          {@link ApplicationModel.PropertyName}.
+     */
+    public GetProperties(String... properties) {
+      super();
+      addParameter("properties", properties);
+    }
 
-		@Override
-		protected ApplicationModel.PropertyValue parseOne(JsonNode node) {
-			return new ApplicationModel.PropertyValue(node);
-		}
+    @Override
+    protected ApplicationModel.PropertyValue parseOne(JsonNode node) {
+      return new ApplicationModel.PropertyValue(node);
+    }
 
-		@Override
-		public String getName() {
-			return API_TYPE;
-		}
+    @Override
+    public String getName() {
+      return API_TYPE;
+    }
 
-		@Override
-		protected boolean returnsList() {
-			return false;
-		}
-	}
+    @Override
+    protected boolean returnsList() {
+      return false;
+    }
+  }
 
-	/**
-	 * Quit application.
-	 * <p/>
-	 * This class represents the API method <tt>Application.Quit</tt>
-	 * <p/>
-	 * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
-	 */
-	public static class Quit extends AbstractCall<String> {
-		public final static String API_TYPE = "Application.Quit";
+  /**
+   * Quit application.
+   * <p/>
+   * This class represents the API method <tt>Application.Quit</tt>
+   * <p/>
+   * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
+   */
+  public static class Quit extends AbstractCall<String> {
+    public final static String API_TYPE = "Application.Quit";
 
-		/**
-		 * Quit application.
-		 */
-		public Quit() {
-			super();
-		}
+    /**
+     * Quit application.
+     */
+    public Quit() {
+      super();
+    }
 
-		@Override
-		protected String parseOne(JsonNode node) {
-			return node.getTextValue();
-		}
+    @Override
+    protected String parseOne(JsonNode node) {
+      return node.getTextValue();
+    }
 
-		@Override
-		public String getName() {
-			return API_TYPE;
-		}
+    @Override
+    public String getName() {
+      return API_TYPE;
+    }
 
-		@Override
-		protected boolean returnsList() {
-			return false;
-		}
-	}
+    @Override
+    protected boolean returnsList() {
+      return false;
+    }
+  }
 
-	/**
-	 * Toggle mute/unmute.
-	 * <p/>
-	 * This class represents the API method <tt>Application.SetMute</tt>
-	 * <p/>
-	 * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
-	 */
-	public static class SetMute extends AbstractCall<Boolean> {
-		public final static String API_TYPE = "Application.SetMute";
+  /**
+   * Toggle mute/unmute.
+   * <p/>
+   * This class represents the API method <tt>Application.SetMute</tt>
+   * <p/>
+   * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
+   */
+  public static class SetMute extends AbstractCall<Boolean> {
+    public final static String API_TYPE = "Application.SetMute";
 
-		/**
-		 * Toggle mute/unmute.
-		 * @param mute 
-		 */
-		public SetMute(GlobalModel.Toggle mute) {
-			super();
-			addParameter("mute", mute);
-		}
+    /**
+     * Toggle mute/unmute.
+     * 
+     * @param mute
+     */
+    public SetMute(GlobalModel.Toggle mute) {
+      super();
+      addParameter("mute", mute);
+    }
 
-		@Override
-		protected Boolean parseOne(JsonNode node) {
-			return node.getBooleanValue();
-		}
+    @Override
+    protected Boolean parseOne(JsonNode node) {
+      return node.getBooleanValue();
+    }
 
-		@Override
-		public String getName() {
-			return API_TYPE;
-		}
+    @Override
+    public String getName() {
+      return API_TYPE;
+    }
 
-		@Override
-		protected boolean returnsList() {
-			return false;
-		}
-	}
+    @Override
+    protected boolean returnsList() {
+      return false;
+    }
+  }
 
-	/**
-	 * Set the current volume.
-	 * <p/>
-	 * This class represents the API method <tt>Application.SetVolume</tt>
-	 * <p/>
-	 * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
-	 */
-	public static class SetVolume extends AbstractCall<Integer> {
-		public final static String API_TYPE = "Application.SetVolume";
+  /**
+   * Set the current volume.
+   * <p/>
+   * This class represents the API method <tt>Application.SetVolume</tt>
+   * <p/>
+   * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
+   */
+  public static class SetVolume extends AbstractCall<Integer> {
+    public final static String API_TYPE = "Application.SetVolume";
 
-		/**
-		 * Set the current volume.
-		 * @param volume 
-		 */
-		public SetVolume(Integer volume) {
-			super();
-			addParameter("volume", volume);
-		}
+    /**
+     * Set the current volume.
+     * 
+     * @param volume
+     */
+    public SetVolume(Integer volume) {
+      super();
+      addParameter("volume", volume);
+    }
 
-		/**
-		 * Set the current volume.
-		 * @param volume  One of: <tt>increment</tt>, <tt>decrement</tt>. See constants at {@link GlobalModel.IncrementDecrement}.
-		 */
-		public SetVolume(String volume) {
-			super();
-			addParameter("volume", volume);
-		}
+    /**
+     * Set the current volume.
+     * 
+     * @param volume
+     *          One of: <tt>increment</tt>, <tt>decrement</tt>. See constants at {@link GlobalModel.IncrementDecrement}.
+     */
+    public SetVolume(String volume) {
+      super();
+      addParameter("volume", volume);
+    }
 
-		@Override
-		protected Integer parseOne(JsonNode node) {
-			return node.getIntValue();
-		}
+    @Override
+    protected Integer parseOne(JsonNode node) {
+      return node.getIntValue();
+    }
 
-		@Override
-		public String getName() {
-			return API_TYPE;
-		}
+    @Override
+    public String getName() {
+      return API_TYPE;
+    }
 
-		@Override
-		protected boolean returnsList() {
-			return false;
-		}
-	}
+    @Override
+    protected boolean returnsList() {
+      return false;
+    }
+  }
 }

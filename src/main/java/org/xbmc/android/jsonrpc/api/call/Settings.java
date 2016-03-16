@@ -21,239 +21,250 @@
 package org.xbmc.android.jsonrpc.api.call;
 
 import java.util.ArrayList;
-import java.util.List;
+
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.ObjectNode;
 import org.xbmc.android.jsonrpc.api.AbstractCall;
-import org.xbmc.android.jsonrpc.api.call.Settings;
 import org.xbmc.android.jsonrpc.api.model.SettingModel;
 
 public final class Settings {
 
-	/**
-	 * Retrieves all setting categories.
-	 * <p/>
-	 * This class represents the API method <tt>Settings.GetCategories</tt>
-	 * <p/>
-	 * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
-	 */
-	public static class GetCategories extends AbstractCall<SettingModel.CategoryDetail> {
-		public final static String API_TYPE = "Settings.GetCategories";
-		public final static String RESULT = "categories";
+  /**
+   * Retrieves all setting categories.
+   * <p/>
+   * This class represents the API method <tt>Settings.GetCategories</tt>
+   * <p/>
+   * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
+   */
+  public static class GetCategories extends AbstractCall<SettingModel.CategoryDetail> {
+    public final static String API_TYPE = "Settings.GetCategories";
+    public final static String RESULT   = "categories";
 
-		/**
-		 * Retrieves all setting categories.
-		 * @param level  One of: <tt>basic</tt>, <tt>standard</tt>, <tt>advanced</tt>, <tt>expert</tt>. See constants at {@link SettingModel.Level}.
-		 * @param section 
-		 * @param properties 
-		 */
-		public GetCategories(String level, String section, String ... properties) {
-			super();
-			addParameter("level", level);
-			addParameter("section", section);
-			addParameter("properties", properties);
-		}
+    /**
+     * Retrieves all setting categories.
+     * 
+     * @param level
+     *          One of: <tt>basic</tt>, <tt>standard</tt>, <tt>advanced</tt>, <tt>expert</tt>. See constants at {@link SettingModel.Level}.
+     * @param section
+     * @param properties
+     */
+    public GetCategories(String level, String section, String... properties) {
+      super();
+      addParameter("level", level);
+      addParameter("section", section);
+      addParameter("properties", properties);
+    }
 
-		/**
-		 * Retrieves all setting categories.
-		 * @param properties 
-		 */
-		public GetCategories(String properties) {
-			super();
-			addParameter("properties", properties);
-		}
+    /**
+     * Retrieves all setting categories.
+     * 
+     * @param properties
+     */
+    public GetCategories(String properties) {
+      super();
+      addParameter("properties", properties);
+    }
 
-		/**
-		 * Retrieves all setting categories.
-		 * @param level  One of: <tt>basic</tt>, <tt>standard</tt>, <tt>advanced</tt>, <tt>expert</tt>. See constants at {@link SettingModel.Level}.
-		 * @param properties 
-		 */
-		public GetCategories(String level, String properties) {
-			super();
-			addParameter("level", level);
-			addParameter("properties", properties);
-		}
+    /**
+     * Retrieves all setting categories.
+     * 
+     * @param level
+     *          One of: <tt>basic</tt>, <tt>standard</tt>, <tt>advanced</tt>, <tt>expert</tt>. See constants at {@link SettingModel.Level}.
+     * @param properties
+     */
+    public GetCategories(String level, String properties) {
+      super();
+      addParameter("level", level);
+      addParameter("properties", properties);
+    }
 
-		@Override
-		protected ArrayList<SettingModel.CategoryDetail> parseMany(JsonNode node) {
-			final ArrayNode categories = parseResults(node, RESULT);
-			if (categories != null) {
-				final ArrayList<SettingModel.CategoryDetail> ret = new ArrayList<SettingModel.CategoryDetail>(categories.size());
-				for (int i = 0; i < categories.size(); i++) {
-					final ObjectNode item = (ObjectNode)categories.get(i);
-					ret.add(new SettingModel.CategoryDetail(item));
-				}
-				return ret;
-			} else {
-				return new ArrayList<SettingModel.CategoryDetail>(0);
-			}
-		}
+    @Override
+    protected ArrayList<SettingModel.CategoryDetail> parseMany(JsonNode node) {
+      final ArrayNode categories = parseResults(node, RESULT);
+      if (categories != null) {
+        final ArrayList<SettingModel.CategoryDetail> ret = new ArrayList<SettingModel.CategoryDetail>(categories.size());
+        for (int i = 0; i < categories.size(); i++) {
+          final ObjectNode item = (ObjectNode) categories.get(i);
+          ret.add(new SettingModel.CategoryDetail(item));
+        }
+        return ret;
+      }
+      else {
+        return new ArrayList<SettingModel.CategoryDetail>(0);
+      }
+    }
 
-		@Override
-		public String getName() {
-			return API_TYPE;
-		}
+    @Override
+    public String getName() {
+      return API_TYPE;
+    }
 
-		@Override
-		protected boolean returnsList() {
-			return true;
-		}
-	}
+    @Override
+    protected boolean returnsList() {
+      return true;
+    }
+  }
 
-	/**
-	 * Retrieves all setting sections.
-	 * <p/>
-	 * This class represents the API method <tt>Settings.GetSections</tt>
-	 * <p/>
-	 * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
-	 */
-	public static class GetSections extends AbstractCall<SettingModel.SectionDetail> {
-		public final static String API_TYPE = "Settings.GetSections";
-		public final static String RESULT = "sections";
+  /**
+   * Retrieves all setting sections.
+   * <p/>
+   * This class represents the API method <tt>Settings.GetSections</tt>
+   * <p/>
+   * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
+   */
+  public static class GetSections extends AbstractCall<SettingModel.SectionDetail> {
+    public final static String API_TYPE = "Settings.GetSections";
+    public final static String RESULT   = "sections";
 
-		/**
-		 * Retrieves all setting sections.
-		 * @param level  One of: <tt>basic</tt>, <tt>standard</tt>, <tt>advanced</tt>, <tt>expert</tt>. See constants at {@link SettingModel.Level}.
-		 * @param properties 
-		 */
-		public GetSections(String level, String ... properties) {
-			super();
-			addParameter("level", level);
-			addParameter("properties", properties);
-		}
+    /**
+     * Retrieves all setting sections.
+     * 
+     * @param level
+     *          One of: <tt>basic</tt>, <tt>standard</tt>, <tt>advanced</tt>, <tt>expert</tt>. See constants at {@link SettingModel.Level}.
+     * @param properties
+     */
+    public GetSections(String level, String... properties) {
+      super();
+      addParameter("level", level);
+      addParameter("properties", properties);
+    }
 
-		@Override
-		protected ArrayList<SettingModel.SectionDetail> parseMany(JsonNode node) {
-			final ArrayNode sections = parseResults(node, RESULT);
-			if (sections != null) {
-				final ArrayList<SettingModel.SectionDetail> ret = new ArrayList<SettingModel.SectionDetail>(sections.size());
-				for (int i = 0; i < sections.size(); i++) {
-					final ObjectNode item = (ObjectNode)sections.get(i);
-					ret.add(new SettingModel.SectionDetail(item));
-				}
-				return ret;
-			} else {
-				return new ArrayList<SettingModel.SectionDetail>(0);
-			}
-		}
+    @Override
+    protected ArrayList<SettingModel.SectionDetail> parseMany(JsonNode node) {
+      final ArrayNode sections = parseResults(node, RESULT);
+      if (sections != null) {
+        final ArrayList<SettingModel.SectionDetail> ret = new ArrayList<SettingModel.SectionDetail>(sections.size());
+        for (int i = 0; i < sections.size(); i++) {
+          final ObjectNode item = (ObjectNode) sections.get(i);
+          ret.add(new SettingModel.SectionDetail(item));
+        }
+        return ret;
+      }
+      else {
+        return new ArrayList<SettingModel.SectionDetail>(0);
+      }
+    }
 
-		@Override
-		public String getName() {
-			return API_TYPE;
-		}
+    @Override
+    public String getName() {
+      return API_TYPE;
+    }
 
-		@Override
-		protected boolean returnsList() {
-			return true;
-		}
-	}
+    @Override
+    protected boolean returnsList() {
+      return true;
+    }
+  }
 
-	/**
-	 * Retrieves the value of a setting.
-	 * <p/>
-	 * This class represents the API method <tt>Settings.GetSettingValue</tt>
-	 * <p/>
-	 * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
-	 */
-	public static class GetSettingValue extends AbstractCall<SettingModel.ValueExtended> {
-		public final static String API_TYPE = "Settings.GetSettingValue";
-		public final static String RESULT = "value";
+  /**
+   * Retrieves the value of a setting.
+   * <p/>
+   * This class represents the API method <tt>Settings.GetSettingValue</tt>
+   * <p/>
+   * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
+   */
+  public static class GetSettingValue extends AbstractCall<SettingModel.ValueExtended> {
+    public final static String API_TYPE = "Settings.GetSettingValue";
+    public final static String RESULT   = "value";
 
-		/**
-		 * Retrieves the value of a setting.
-		 * @param setting 
-		 */
-		public GetSettingValue(String setting) {
-			super();
-			addParameter("setting", setting);
-		}
+    /**
+     * Retrieves the value of a setting.
+     * 
+     * @param setting
+     */
+    public GetSettingValue(String setting) {
+      super();
+      addParameter("setting", setting);
+    }
 
-		@Override
-		protected SettingModel.ValueExtended parseOne(JsonNode node) {
-			return new SettingModel.ValueExtended((ObjectNode)node.get(RESULT));
-		}
+    @Override
+    protected SettingModel.ValueExtended parseOne(JsonNode node) {
+      return new SettingModel.ValueExtended((ObjectNode) node.get(RESULT));
+    }
 
-		@Override
-		public String getName() {
-			return API_TYPE;
-		}
+    @Override
+    public String getName() {
+      return API_TYPE;
+    }
 
-		@Override
-		protected boolean returnsList() {
-			return false;
-		}
-	}
+    @Override
+    protected boolean returnsList() {
+      return false;
+    }
+  }
 
-	/**
-	 * Resets the value of a setting.
-	 * <p/>
-	 * This class represents the API method <tt>Settings.ResetSettingValue</tt>
-	 * <p/>
-	 * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
-	 */
-	public static class ResetSettingValue extends AbstractCall<String> {
-		public final static String API_TYPE = "Settings.ResetSettingValue";
+  /**
+   * Resets the value of a setting.
+   * <p/>
+   * This class represents the API method <tt>Settings.ResetSettingValue</tt>
+   * <p/>
+   * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
+   */
+  public static class ResetSettingValue extends AbstractCall<String> {
+    public final static String API_TYPE = "Settings.ResetSettingValue";
 
-		/**
-		 * Resets the value of a setting.
-		 * @param setting 
-		 */
-		public ResetSettingValue(String setting) {
-			super();
-			addParameter("setting", setting);
-		}
+    /**
+     * Resets the value of a setting.
+     * 
+     * @param setting
+     */
+    public ResetSettingValue(String setting) {
+      super();
+      addParameter("setting", setting);
+    }
 
-		@Override
-		protected String parseOne(JsonNode node) {
-			return node.getTextValue();
-		}
+    @Override
+    protected String parseOne(JsonNode node) {
+      return node.getTextValue();
+    }
 
-		@Override
-		public String getName() {
-			return API_TYPE;
-		}
+    @Override
+    public String getName() {
+      return API_TYPE;
+    }
 
-		@Override
-		protected boolean returnsList() {
-			return false;
-		}
-	}
+    @Override
+    protected boolean returnsList() {
+      return false;
+    }
+  }
 
-	/**
-	 * Changes the value of a setting.
-	 * <p/>
-	 * This class represents the API method <tt>Settings.SetSettingValue</tt>
-	 * <p/>
-	 * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
-	 */
-	public static class SetSettingValue extends AbstractCall<Boolean> {
-		public final static String API_TYPE = "Settings.SetSettingValue";
+  /**
+   * Changes the value of a setting.
+   * <p/>
+   * This class represents the API method <tt>Settings.SetSettingValue</tt>
+   * <p/>
+   * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
+   */
+  public static class SetSettingValue extends AbstractCall<Boolean> {
+    public final static String API_TYPE = "Settings.SetSettingValue";
 
-		/**
-		 * Changes the value of a setting.
-		 * @param setting 
-		 * @param value 
-		 */
-		public SetSettingValue(String setting, SettingModel.ValueExtended value) {
-			super();
-			addParameter("setting", setting);
-			addParameter("value", value);
-		}
+    /**
+     * Changes the value of a setting.
+     * 
+     * @param setting
+     * @param value
+     */
+    public SetSettingValue(String setting, SettingModel.ValueExtended value) {
+      super();
+      addParameter("setting", setting);
+      addParameter("value", value);
+    }
 
-		@Override
-		protected Boolean parseOne(JsonNode node) {
-			return node.getBooleanValue();
-		}
+    @Override
+    protected Boolean parseOne(JsonNode node) {
+      return node.getBooleanValue();
+    }
 
-		@Override
-		public String getName() {
-			return API_TYPE;
-		}
+    @Override
+    public String getName() {
+      return API_TYPE;
+    }
 
-		@Override
-		protected boolean returnsList() {
-			return false;
-		}
-	}
+    @Override
+    protected boolean returnsList() {
+      return false;
+    }
+  }
 }

@@ -26,108 +26,109 @@ import org.xbmc.android.jsonrpc.api.AbstractModel;
 
 public final class ConfigurationModel {
 
-	/**
-	 * API Name: <tt>Configuration</tt>
-	 * <p/>
-	 * Note: Seems this class isn't used yet in the API.<br/>
-	 * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
-	 */
-	public static class Configuration extends AbstractModel {
-		public final static String API_TYPE = "Configuration";
+  /**
+   * API Name: <tt>Configuration</tt>
+   * <p/>
+   * Note: Seems this class isn't used yet in the API.<br/>
+   * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
+   */
+  public static class Configuration extends AbstractModel {
+    public final static String API_TYPE      = "Configuration";
 
-		// field names
-		public static final String NOTIFICATIONS = "notifications";
+    // field names
+    public static final String NOTIFICATIONS = "notifications";
 
-		// class members
-		public final Notifications notifications;
+    // class members
+    public final Notifications notifications;
 
-		/**
-		 * @param notifications
-		 */
-		public Configuration(Notifications notifications) {
-			this.notifications = notifications;
-		}
+    /**
+     * @param notifications
+     */
+    public Configuration(Notifications notifications) {
+      this.notifications = notifications;
+    }
 
-		@Override
-		public JsonNode toJsonNode() {
-			final ObjectNode node = OM.createObjectNode();
-			node.put(NOTIFICATIONS, notifications.toJsonNode());
-			return node;
-		}
-	}
+    @Override
+    public JsonNode toJsonNode() {
+      final ObjectNode node = OM.createObjectNode();
+      node.put(NOTIFICATIONS, notifications.toJsonNode());
+      return node;
+    }
+  }
 
-	/**
-	 * API Name: <tt>Configuration.Notifications</tt>
-	 * <p/>
-	 * Note: Seems this class isn't used yet in the API.<br/>
-	 * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
-	 */
-	public static class Notifications extends AbstractModel {
-		public final static String API_TYPE = "Configuration.Notifications";
+  /**
+   * API Name: <tt>Configuration.Notifications</tt>
+   * <p/>
+   * Note: Seems this class isn't used yet in the API.<br/>
+   * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
+   */
+  public static class Notifications extends AbstractModel {
+    public final static String API_TYPE     = "Configuration.Notifications";
 
-		// field names
-		public static final String APPLICATION = "application";
-		public static final String AUDIOLIBRARY = "audiolibrary";
-		public static final String GUI = "gui";
-		public static final String INPUT = "input";
-		public static final String OTHER = "other";
-		public static final String PLAYER = "player";
-		public static final String PLAYLIST = "playlist";
-		public static final String PVR = "pvr";
-		public static final String SYSTEM = "system";
-		public static final String VIDEOLIBRARY = "videolibrary";
+    // field names
+    public static final String APPLICATION  = "application";
+    public static final String AUDIOLIBRARY = "audiolibrary";
+    public static final String GUI          = "gui";
+    public static final String INPUT        = "input";
+    public static final String OTHER        = "other";
+    public static final String PLAYER       = "player";
+    public static final String PLAYLIST     = "playlist";
+    public static final String PVR          = "pvr";
+    public static final String SYSTEM       = "system";
+    public static final String VIDEOLIBRARY = "videolibrary";
 
-		// class members
-		public final Boolean application;
-		public final Boolean audiolibrary;
-		public final Boolean gui;
-		public final Boolean input;
-		public final Boolean other;
-		public final Boolean player;
-		public final Boolean playlist;
-		public final Boolean pvr;
-		public final Boolean system;
-		public final Boolean videolibrary;
+    // class members
+    public final Boolean       application;
+    public final Boolean       audiolibrary;
+    public final Boolean       gui;
+    public final Boolean       input;
+    public final Boolean       other;
+    public final Boolean       player;
+    public final Boolean       playlist;
+    public final Boolean       pvr;
+    public final Boolean       system;
+    public final Boolean       videolibrary;
 
-		/**
-		 * @param application
-		 * @param audiolibrary
-		 * @param gui
-		 * @param input
-		 * @param other
-		 * @param player
-		 * @param playlist
-		 * @param pvr
-		 * @param system
-		 * @param videolibrary
-		 */
-		public Notifications(Boolean application, Boolean audiolibrary, Boolean gui, Boolean input, Boolean other, Boolean player, Boolean playlist, Boolean pvr, Boolean system, Boolean videolibrary) {
-			this.application = application;
-			this.audiolibrary = audiolibrary;
-			this.gui = gui;
-			this.input = input;
-			this.other = other;
-			this.player = player;
-			this.playlist = playlist;
-			this.pvr = pvr;
-			this.system = system;
-			this.videolibrary = videolibrary;
-		}
+    /**
+     * @param application
+     * @param audiolibrary
+     * @param gui
+     * @param input
+     * @param other
+     * @param player
+     * @param playlist
+     * @param pvr
+     * @param system
+     * @param videolibrary
+     */
+    public Notifications(Boolean application, Boolean audiolibrary, Boolean gui, Boolean input, Boolean other, Boolean player, Boolean playlist,
+        Boolean pvr, Boolean system, Boolean videolibrary) {
+      this.application = application;
+      this.audiolibrary = audiolibrary;
+      this.gui = gui;
+      this.input = input;
+      this.other = other;
+      this.player = player;
+      this.playlist = playlist;
+      this.pvr = pvr;
+      this.system = system;
+      this.videolibrary = videolibrary;
+    }
 
-		@Override
-		public JsonNode toJsonNode() {
-			final ObjectNode node = OM.createObjectNode();
-			node.put(APPLICATION, application);
-			node.put(AUDIOLIBRARY, audiolibrary);
-			node.put(GUI, gui);
-			node.put(INPUT, input);
-			node.put(OTHER, other);
-			node.put(PLAYER, player);
-			node.put(PLAYLIST, playlist);
-			node.put(PVR, pvr);
-			node.put(SYSTEM, system);
-			node.put(VIDEOLIBRARY, videolibrary);
-			return node;
-		}
-	}
+    @Override
+    public JsonNode toJsonNode() {
+      final ObjectNode node = OM.createObjectNode();
+      node.put(APPLICATION, application);
+      node.put(AUDIOLIBRARY, audiolibrary);
+      node.put(GUI, gui);
+      node.put(INPUT, input);
+      node.put(OTHER, other);
+      node.put(PLAYER, player);
+      node.put(PLAYLIST, playlist);
+      node.put(PVR, pvr);
+      node.put(SYSTEM, system);
+      node.put(VIDEOLIBRARY, videolibrary);
+      return node;
+    }
+  }
 }

@@ -22,6 +22,7 @@ package org.xbmc.android.jsonrpc.api.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.ObjectNode;
@@ -29,59 +30,64 @@ import org.xbmc.android.jsonrpc.api.AbstractModel;
 
 public final class ItemModel {
 
-	/**
-	 * API Name: <tt>Item.Details.Base</tt>
-	 * <p/>
-	 * Note: This class is used as result only.<br/>
-	 * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
-	 */
-	public static class BaseDetail extends AbstractModel {
-		public final static String API_TYPE = "Item.Details.Base";
+  /**
+   * API Name: <tt>Item.Details.Base</tt>
+   * <p/>
+   * Note: This class is used as result only.<br/>
+   * <i>This class was generated automatically from XBMC's JSON-RPC introspect.</i>
+   */
+  public static class BaseDetail extends AbstractModel {
+    public final static String API_TYPE = "Item.Details.Base";
 
-		// field names
-		public static final String LABEL = "label";
+    // field names
+    public static final String LABEL    = "label";
 
-		// class members
-		public final String label;
+    // class members
+    public final String        label;
 
-		/**
-		 * @param label
-		 */
-		public BaseDetail(String label) {
-			this.label = label;
-		}
+    /**
+     * @param label
+     */
+    public BaseDetail(String label) {
+      this.label = label;
+    }
 
-		/**
-		 * Construct from JSON object.
-		 * @param node JSON object representing a BaseDetail object
-		 */
-		public BaseDetail(JsonNode node) {
-			label = node.get(LABEL).getTextValue(); // required value
-		}
+    /**
+     * Construct from JSON object.
+     * 
+     * @param node
+     *          JSON object representing a BaseDetail object
+     */
+    public BaseDetail(JsonNode node) {
+      label = node.get(LABEL).getTextValue(); // required value
+    }
 
-		@Override
-		public JsonNode toJsonNode() {
-			final ObjectNode node = OM.createObjectNode();
-			node.put(LABEL, label);
-			return node;
-		}
+    @Override
+    public JsonNode toJsonNode() {
+      final ObjectNode node = OM.createObjectNode();
+      node.put(LABEL, label);
+      return node;
+    }
 
-		/**
-		 * Extracts a list of {@link BaseDetail} objects from a JSON array.
-		 * @param node ObjectNode containing the list of objects.
-		 * @param key Key pointing to the node where the list is stored.
-		 */
-		static List<BaseDetail> getItemModelBaseDetailList(JsonNode node, String key) {
-			if (node.has(key)) {
-				final ArrayNode a = (ArrayNode)node.get(key);
-				final List<BaseDetail> l = new ArrayList<BaseDetail>(a.size());
-				for (int i = 0; i < a.size(); i++) {
-					l.add(new BaseDetail((JsonNode)a.get(i)));
-				}
-				return l;
-			}
-			return new ArrayList<BaseDetail>(0);
-		}
+    /**
+     * Extracts a list of {@link BaseDetail} objects from a JSON array.
+     * 
+     * @param node
+     *          ObjectNode containing the list of objects.
+     * @param key
+     *          Key pointing to the node where the list is stored.
+     */
+    static List<BaseDetail> getItemModelBaseDetailList(JsonNode node, String key) {
+      if (node.has(key)) {
+        final ArrayNode a = (ArrayNode) node.get(key);
+        final List<BaseDetail> l = new ArrayList<BaseDetail>(a.size());
+        for (int i = 0; i < a.size(); i++) {
+          l.add(new BaseDetail((JsonNode) a.get(i)));
+        }
+        return l;
+      }
+      return new ArrayList<BaseDetail>(0);
+    }
 
-	}
+  }
 }

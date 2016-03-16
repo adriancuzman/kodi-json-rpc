@@ -26,17 +26,17 @@ import java.util.Set;
 
 public final class FilesModel {
 
-	/**
-	 * API Name: <tt>Files.Media</tt>
-	 */
-	public interface Media {
+  /**
+   * API Name: <tt>Files.Media</tt>
+   */
+  public interface Media {
 
-		public final String VIDEO = "video";
-		public final String MUSIC = "music";
-		public final String PICTURES = "pictures";
-		public final String FILES = "files";
-		public final String PROGRAMS = "programs";
+    public final String             VIDEO    = "video";
+    public final String             MUSIC    = "music";
+    public final String             PICTURES = "pictures";
+    public final String             FILES    = "files";
+    public final String             PROGRAMS = "programs";
 
-		public final static Set<String> values = new HashSet<String>(Arrays.asList(VIDEO, MUSIC, PICTURES, FILES, PROGRAMS));
-	}
+    public final static Set<String> values   = new HashSet<String>(Arrays.asList(VIDEO, MUSIC, PICTURES, FILES, PROGRAMS));
+  }
 }

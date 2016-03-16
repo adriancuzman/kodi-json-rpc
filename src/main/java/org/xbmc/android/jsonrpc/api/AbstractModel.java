@@ -35,7 +35,7 @@ public abstract class AbstractModel implements JsonSerializable {
   /**
    * Reference to Jackson's object mapper
    */
-  protected final static ObjectMapper OM    = new ObjectMapper();
+  protected final static ObjectMapper OM = new ObjectMapper();
 
   protected String                    mType;
 

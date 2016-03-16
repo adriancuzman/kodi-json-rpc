@@ -30,10 +30,11 @@ import org.codehaus.jackson.JsonNode;
  */
 public interface JsonSerializable {
 
-	/**
-	 * Returns a JSON-serialized version of this object.
-	 * @return Deserialized Json Node
-	 */
-	public abstract JsonNode toJsonNode();
+  /**
+   * Returns a JSON-serialized version of this object.
+   * 
+   * @return Deserialized Json Node
+   */
+  public abstract JsonNode toJsonNode();
 
 }
