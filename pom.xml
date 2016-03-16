@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.tinymediamanager</groupId>
+		<artifactId>tmm-parent</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<artifactId>kodi-json-rpc</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<name>Kodi JSON RPC</name>
+	<description>This library is the result of freezy's Kodi JSON introspection, merged with dereulenspiegel's adoption without android, and patched to Kodi 16 Jarvis.</description>
+	<!-- https://github.com/freezy/xbmc-jsonrpclib-android -->
+	<!-- https://github.com/dereulenspiegel/xbmc-api -->
+
+	<dependencies>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.8.11</version>
+		</dependency>
+	</dependencies>
+</project>
