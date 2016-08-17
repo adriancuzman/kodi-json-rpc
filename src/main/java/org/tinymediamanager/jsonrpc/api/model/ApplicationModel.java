@@ -87,7 +87,7 @@ public final class ApplicationModel {
       final ObjectNode node = OM.createObjectNode();
       node.put(MUTED, muted);
       node.put(NAME, name);
-      node.put(VERSION, version.toJsonNode());
+      node.put(VERSION, version == null ? null : version.toJsonNode());
       node.put(VOLUME, volume);
       return node;
     }
@@ -168,7 +168,7 @@ public final class ApplicationModel {
         final ObjectNode node = OM.createObjectNode();
         node.put(MAJOR, major);
         node.put(MINOR, minor);
-        node.put(REVISION, revision.toJsonNode());
+        node.put(REVISION, revision == null ? null : revision.toJsonNode());
         node.put(TAG, tag); // enum
         node.put(TAGVERSION, tagversion);
         return node;

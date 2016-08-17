@@ -2465,9 +2465,9 @@ public final class VideoLibrary {
       @Override
       public JsonNode toJsonNode() {
         final ObjectNode node = OM.createObjectNode();
-        node.put(LIMITS, limits.toJsonNode());
+        node.put(LIMITS, limits == null ? null : limits.toJsonNode());
         node.put(PROPERTIES, properties); // enum
-        node.put(SORT, sort.toJsonNode());
+        node.put(SORT, sort == null ? null : sort.toJsonNode());
         return node;
       }
 

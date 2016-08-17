@@ -89,11 +89,11 @@ public final class GUIModel {
     @Override
     public JsonNode toJsonNode() {
       final ObjectNode node = OM.createObjectNode();
-      node.put(CURRENTCONTROL, currentcontrol.toJsonNode());
-      node.put(CURRENTWINDOW, currentwindow.toJsonNode());
+      node.put(CURRENTCONTROL, currentcontrol == null ? null : currentcontrol.toJsonNode());
+      node.put(CURRENTWINDOW, currentwindow == null ? null : currentwindow.toJsonNode());
       node.put(FULLSCREEN, fullscreen);
-      node.put(SKIN, skin.toJsonNode());
-      node.put(STEREOSCOPICMODE, stereoscopicmode.toJsonNode());
+      node.put(SKIN, skin == null ? null : skin.toJsonNode());
+      node.put(STEREOSCOPICMODE, stereoscopicmode == null ? null : stereoscopicmode.toJsonNode());
       return node;
     }
 

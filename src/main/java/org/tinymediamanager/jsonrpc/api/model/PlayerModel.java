@@ -152,8 +152,8 @@ public final class PlayerModel {
     @Override
     public JsonNode toJsonNode() {
       final ObjectNode node = OM.createObjectNode();
-      node.put(ITEM, item.toJsonNode());
-      node.put(PLAYER, player.toJsonNode());
+      node.put(ITEM, item == null ? null : item.toJsonNode());
+      node.put(PLAYER, player == null ? null : player.toJsonNode());
       return node;
     }
 
@@ -214,8 +214,8 @@ public final class PlayerModel {
     @Override
     public JsonNode toJsonNode() {
       final ObjectNode node = (ObjectNode) super.toJsonNode();
-      node.put(SEEKOFFSET, seekoffset.toJsonNode());
-      node.put(TIME, time.toJsonNode());
+      node.put(SEEKOFFSET, seekoffset == null ? null : seekoffset.toJsonNode());
+      node.put(TIME, time == null ? null : time.toJsonNode());
       return node;
     }
 
@@ -438,8 +438,8 @@ public final class PlayerModel {
       node.put(CANSEEK, canseek);
       node.put(CANSHUFFLE, canshuffle);
       node.put(CANZOOM, canzoom);
-      node.put(CURRENTAUDIOSTREAM, currentaudiostream.toJsonNode());
-      node.put(CURRENTSUBTITLE, currentsubtitle.toJsonNode());
+      node.put(CURRENTAUDIOSTREAM, currentaudiostream == null ? null : currentaudiostream.toJsonNode());
+      node.put(CURRENTSUBTITLE, currentsubtitle == null ? null : currentsubtitle.toJsonNode());
       node.put(LIVE, live);
       node.put(PARTYMODE, partymode);
       node.put(PERCENTAGE, percentage);
@@ -454,8 +454,8 @@ public final class PlayerModel {
         subtitlesArray.add(item.toJsonNode());
       }
       node.put(SUBTITLES, subtitlesArray);
-      node.put(TIME, time.toJsonNode());
-      node.put(TOTALTIME, totaltime.toJsonNode());
+      node.put(TIME, time == null ? null : time.toJsonNode());
+      node.put(TOTALTIME, totaltime == null ? null : totaltime.toJsonNode());
       node.put(TYPE, type); // enum
       return node;
     }

@@ -51,7 +51,7 @@ public final class ConfigurationModel {
     @Override
     public JsonNode toJsonNode() {
       final ObjectNode node = OM.createObjectNode();
-      node.put(NOTIFICATIONS, notifications.toJsonNode());
+      node.put(NOTIFICATIONS, notifications == null ? null : notifications.toJsonNode());
       return node;
     }
   }

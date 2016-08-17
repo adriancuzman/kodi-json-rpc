@@ -668,7 +668,7 @@ public final class ListModel {
     public JsonNode toJsonNode() {
       final ObjectNode node = OM.createObjectNode();
       node.put(OPERATOR, operator); // enum
-      node.put(VALUE, value.toJsonNode());
+      node.put(VALUE, value == null ? null : value.toJsonNode());
       return node;
     }
 
@@ -2246,7 +2246,7 @@ public final class ListModel {
       node.put(ALBUMID, albumid);
       node.put(ALBUMLABEL, albumlabel);
       node.put(ALBUMRELEASETYPE, albumreleasetype); // enum
-      node.put(ART, art.toJsonNode());
+      node.put(ART, art == null ? null : art.toJsonNode());
       final ArrayNode artistArray = OM.createArrayNode();
       for (String item : artist) {
         artistArray.add(item);
@@ -2317,7 +2317,7 @@ public final class ListModel {
       node.put(PRODUCTIONCODE, productioncode);
       node.put(RATING, rating);
       node.put(RELEASETYPE, releasetype); // enum
-      node.put(RESUME, resume.toJsonNode());
+      node.put(RESUME, resume == null ? null : resume.toJsonNode());
       node.put(RUNTIME, runtime);
       node.put(SEASON, season);
       node.put(SET, set);
@@ -2331,7 +2331,7 @@ public final class ListModel {
       node.put(SORTTITLE, sorttitle);
       node.put(SPECIALSORTEPISODE, specialsortepisode);
       node.put(SPECIALSORTSEASON, specialsortseason);
-      node.put(STREAMDETAILS, streamdetails.toJsonNode());
+      node.put(STREAMDETAILS, streamdetails == null ? null : streamdetails.toJsonNode());
       final ArrayNode studioArray = OM.createArrayNode();
       for (String item : studio) {
         studioArray.add(item);

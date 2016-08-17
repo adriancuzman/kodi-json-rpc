@@ -893,9 +893,9 @@ public final class Player {
       @Override
       public JsonNode toJsonNode() {
         final ObjectNode node = OM.createObjectNode();
-        node.put(PLAYERCOREID, playercoreid.toJsonNode());
+        node.put(PLAYERCOREID, playercoreid == null ? null : playercoreid.toJsonNode());
         node.put(REPEAT, repeat); // enum
-        node.put(RESUME, resume.toJsonNode());
+        node.put(RESUME, resume == null ? null : resume.toJsonNode());
         node.put(SHUFFLED, shuffled);
         return node;
       }
@@ -1274,7 +1274,7 @@ public final class Player {
       @Override
       public JsonNode toJsonNode() {
         final ObjectNode node = OM.createObjectNode();
-        node.put(TIME, time.toJsonNode());
+        node.put(TIME, time == null ? null : time.toJsonNode());
         return node;
       }
     }
@@ -1391,8 +1391,8 @@ public final class Player {
       public JsonNode toJsonNode() {
         final ObjectNode node = OM.createObjectNode();
         node.put(PERCENTAGE, percentage);
-        node.put(TIME, time.toJsonNode());
-        node.put(TOTALTIME, totaltime.toJsonNode());
+        node.put(TIME, time == null ? null : time.toJsonNode());
+        node.put(TOTALTIME, totaltime == null ? null : totaltime.toJsonNode());
         return node;
       }
 

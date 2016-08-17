@@ -111,7 +111,7 @@ public final class AddonModel {
       final ObjectNode node = (ObjectNode) super.toJsonNode();
       node.put(ADDONID, addonid);
       node.put(AUTHOR, author);
-      node.put(BROKEN, broken.toJsonNode());
+      node.put(BROKEN, broken == null ? null : broken.toJsonNode());
       final ArrayNode dependenciesArray = OM.createArrayNode();
       for (Dependency item : dependencies) {
         dependenciesArray.add(item.toJsonNode());

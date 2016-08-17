@@ -271,8 +271,8 @@ public final class PVRModel {
     @Override
     public JsonNode toJsonNode() {
       final ObjectNode node = (ObjectNode) super.toJsonNode();
-      node.put(BROADCASTNEXT, broadcastnext.toJsonNode());
-      node.put(BROADCASTNOW, broadcastnow.toJsonNode());
+      node.put(BROADCASTNEXT, broadcastnext == null ? null : broadcastnext.toJsonNode());
+      node.put(BROADCASTNOW, broadcastnow == null ? null : broadcastnow.toJsonNode());
       node.put(CHANNEL, channel);
       node.put(CHANNELID, channelid);
       node.put(CHANNELTYPE, channeltype); // enum
@@ -421,7 +421,7 @@ public final class PVRModel {
         channelsArray.add(item.toJsonNode());
       }
       node.put(CHANNELS, channelsArray);
-      node.put(LIMITS, limits.toJsonNode());
+      node.put(LIMITS, limits == null ? null : limits.toJsonNode());
       return node;
     }
 
@@ -523,7 +523,7 @@ public final class PVRModel {
     @Override
     public JsonNode toJsonNode() {
       final ObjectNode node = (ObjectNode) super.toJsonNode();
-      node.put(ART, art.toJsonNode());
+      node.put(ART, art == null ? null : art.toJsonNode());
       node.put(CHANNEL, channel);
       node.put(DIRECTORY, directory);
       node.put(ENDTIME, endtime);
@@ -535,7 +535,7 @@ public final class PVRModel {
       node.put(PLOT, plot);
       node.put(PLOTOUTLINE, plotoutline);
       node.put(RECORDINGID, recordingid);
-      node.put(RESUME, resume.toJsonNode());
+      node.put(RESUME, resume == null ? null : resume.toJsonNode());
       node.put(RUNTIME, runtime);
       node.put(STARTTIME, starttime);
       node.put(STREAMURL, streamurl);

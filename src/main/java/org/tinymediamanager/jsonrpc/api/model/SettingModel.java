@@ -1619,7 +1619,7 @@ public final class SettingModel {
     @Override
     public JsonNode toJsonNode() {
       final ObjectNode node = (ObjectNode) super.toJsonNode();
-      node.put(CONTROL, control.toJsonNode());
+      node.put(CONTROL, control == null ? null : control.toJsonNode());
       node.put(ENABLED, enabled);
       node.put(LEVEL, level); // enum
       node.put(PARENT, parent);
@@ -1929,7 +1929,7 @@ public final class SettingModel {
         defaultArray.add(item.toJsonNode());
       }
       node.put(DEFAULT, defaultArray);
-      node.put(DEFINITION, definition.toJsonNode());
+      node.put(DEFINITION, definition == null ? null : definition.toJsonNode());
       node.put(DELIMITER, delimiter);
       node.put(ELEMENTTYPE, elementtype); // enum
       node.put(MAXIMUMITEMS, maximumitems);

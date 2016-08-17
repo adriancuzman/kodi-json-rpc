@@ -144,7 +144,7 @@ public final class VideoModel {
     @Override
     public JsonNode toJsonNode() {
       final ObjectNode node = (ObjectNode) super.toJsonNode();
-      node.put(ART, art.toJsonNode());
+      node.put(ART, art == null ? null : art.toJsonNode());
       node.put(PLAYCOUNT, playcount);
       return node;
     }
@@ -345,9 +345,9 @@ public final class VideoModel {
         directorArray.add(item);
       }
       node.put(DIRECTOR, directorArray);
-      node.put(RESUME, resume.toJsonNode());
+      node.put(RESUME, resume == null ? null : resume.toJsonNode());
       node.put(RUNTIME, runtime);
-      node.put(STREAMDETAILS, streamdetails.toJsonNode());
+      node.put(STREAMDETAILS, streamdetails == null ? null : streamdetails.toJsonNode());
       return node;
     }
 
@@ -753,7 +753,7 @@ public final class VideoModel {
     @Override
     public JsonNode toJsonNode() {
       final ObjectNode node = (ObjectNode) super.toJsonNode();
-      node.put(LIMITS, limits.toJsonNode());
+      node.put(LIMITS, limits == null ? null : limits.toJsonNode());
       final ArrayNode moviesArray = OM.createArrayNode();
       for (MovieDetail item : movies) {
         moviesArray.add(item.toJsonNode());
