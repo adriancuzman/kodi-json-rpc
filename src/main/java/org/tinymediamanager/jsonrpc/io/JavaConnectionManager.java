@@ -15,12 +15,14 @@ import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.node.ObjectNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.tinymediamanager.jsonrpc.api.AbstractCall;
 import org.tinymediamanager.jsonrpc.config.HostConfig;
 import org.tinymediamanager.jsonrpc.notification.AbstractEvent;
 
 public class JavaConnectionManager {
-
+  private static final Logger                    LOGGER             = LoggerFactory.getLogger(JavaConnectionManager.class);
   private final List<ConnectionListener>         connectionListener = new ArrayList<ConnectionListener>();
   /**
    * Since we can't return the de-serialized object from the service, put the response back into the received one and return the received one.
@@ -194,6 +196,7 @@ public class JavaConnectionManager {
    */
   private void writeSocket(AbstractCall<?> call) {
     final String data = call.getRequest().toString();
+    LOGGER.debug("CALL: " + data);
     try {
       bufferedWriter.write(data + "\n");
       bufferedWriter.flush();

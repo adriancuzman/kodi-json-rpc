@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.node.ArrayNode;
@@ -118,10 +120,15 @@ public abstract class AbstractCall<T> {
   protected T            mResult  = null;
   protected ArrayList<T> mResults = null;
 
+  @Override
+  public String toString() {
+    return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+  }
+
   /**
    * The ID of the request.
    */
-  private final String   mId;
+  private final String mId;
 
   /**
    * Creates the standard structure of the JSON request.
