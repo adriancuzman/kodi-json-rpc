@@ -59,7 +59,7 @@ public final class ItemModel {
      *          JSON object representing a BaseDetail object
      */
     public BaseDetail(JsonNode node) {
-      label = node.get(LABEL).getTextValue(); // required value
+      label = node.get(LABEL) == null ? "" : node.get(LABEL).getTextValue(); // required value (but not always set!)
     }
 
     @Override

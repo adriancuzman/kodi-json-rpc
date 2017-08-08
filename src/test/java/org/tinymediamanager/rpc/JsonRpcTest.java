@@ -8,8 +8,8 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Locale;
 
-import org.jsoup.helper.StringUtil;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -69,8 +69,6 @@ public class JsonRpcTest {
         LOGGER.warn("Error " + code + ": " + message);
       }
     });
-
-    // Thread.sleep(20 * 1000);
   }
 
   /**
@@ -96,7 +94,7 @@ public class JsonRpcTest {
         e.printStackTrace();
       }
     }
-    if (!StringUtil.isBlank(u.getHost())) {
+    if (!(u.getHost() == null || u.getHost().isEmpty())) {
       ret[1] = u.getPath();
       if (ds.startsWith("upnp")) {
         ret[0] = getMacFromUpnpUUID(u.getHost());
@@ -199,9 +197,17 @@ public class JsonRpcTest {
     });
   }
 
+  private static final int getDefaultHttpPort() {
+    int ret = 80;
+    if (!System.getProperty("os.name").toLowerCase(Locale.ROOT).contains("windows")) {
+      ret = 8080;
+    }
+    return ret;
+  }
+
   @BeforeClass
   public static void setUp() {
-    HostConfig config = new HostConfig("127.0.0.1", 80, 9090);
+    HostConfig config = new HostConfig("127.0.0.1", getDefaultHttpPort(), 9090);
     cm.registerConnectionListener(new ConnectionListener() {
 
       @Override
