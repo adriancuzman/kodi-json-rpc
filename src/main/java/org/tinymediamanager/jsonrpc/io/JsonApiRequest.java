@@ -35,6 +35,7 @@ import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.node.ObjectNode;
 import org.codehaus.jackson.node.TextNode;
+import org.tinymediamanager.jsonrpc.config.HostConfig;
 
 /**
  * Performs HTTP POST requests on the XBMC JSON API and handles the parsing from and to {@link ObjectNode}.
@@ -61,14 +62,9 @@ public class JsonApiRequest {
    * @return JSON Object of the JSON-RPC response.
    * @throws ApiException
    */
-  public static ObjectNode execute(String url, String user, String pass, ObjectNode entity) throws ApiException {
-    try {
-      String response = postRequest(new URL(url), user, pass, entity.toString());
-      return parseResponse(response);
-    }
-    catch (MalformedURLException e) {
-      throw new ApiException(ApiException.MALFORMED_URL, e.getMessage(), e);
-    }
+  public static ObjectNode execute(HostConfig config, ObjectNode entity) throws ApiException {
+    String response = postRequest(config, entity.toString());
+    return parseResponse(response);
   }
 
   /**
@@ -80,15 +76,16 @@ public class JsonApiRequest {
    * @throws ApiException
    * @throws IOException
    */
-  private static String postRequest(URL url, String user, String pass, String entity) throws ApiException {
+  private static String postRequest(HostConfig config, String entity) throws ApiException {
     try {
+      URL url = new URL("http", config.getAddress(), config.getHttpPort(), "/jsonrpc");
       final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
       conn.setRequestMethod("POST");
 
       // http basic authorization
-      if (user != null && !user.isEmpty() && pass != null && !pass.isEmpty()) {
-        final String token = Base64.encodeToString((user + ":" + pass).getBytes(), false);
+      if (config.getUsername() != null && !config.getUsername().isEmpty() && config.getPassword() != null && !config.getPassword().isEmpty()) {
+        final String token = Base64.encodeToString((config.getUsername() + ":" + config.getPassword()).getBytes(), false);
         conn.setRequestProperty("Authorization", "Basic " + token);
       }
       conn.setRequestProperty("Content-Type", "application/json");
@@ -163,7 +160,9 @@ public class JsonApiRequest {
             }
         }
       }
-
+    }
+    catch (MalformedURLException e) {
+      throw new ApiException(ApiException.MALFORMED_URL, e.getMessage(), e);
     }
     catch (SocketTimeoutException e) {
       throw new ApiException(ApiException.IO_SOCKETTIMEOUT, e.getMessage(), e);

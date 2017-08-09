@@ -52,9 +52,14 @@ public class JavaConnectionManager {
    * @return
    */
   public <T> JavaConnectionManager call(final AbstractCall<T> call, final ApiCallback<T> callback) {
-    mCallRequests.put(call.getId(), new CallRequest<T>(call, callback));
-    mCalls.put(call.getId(), call);
-    writeSocket(call);
+    if (isConnected) {
+      mCallRequests.put(call.getId(), new CallRequest<T>(call, callback));
+      mCalls.put(call.getId(), call);
+      writeSocket(call);
+    }
+    else {
+      LOGGER.error("Cannot send call - NOT connected!");
+    }
     return this;
   }
 

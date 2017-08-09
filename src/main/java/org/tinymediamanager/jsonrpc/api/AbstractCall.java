@@ -162,10 +162,10 @@ public abstract class AbstractCall<T> {
    */
   public void setResponse(JsonNode response) {
     if (returnsList()) {
-      mResults = parseMany(response.get(RESULT));
+      mResults = parseMany(response.findValue(RESULT));
     }
     else {
-      mResult = parseOne(response.get(RESULT));
+      mResult = parseOne(response.findValue(RESULT));
     }
   }
 
@@ -226,14 +226,14 @@ public abstract class AbstractCall<T> {
    * @return Result node of response
    */
   protected JsonNode parseResult(JsonNode obj) {
-    return obj.get(RESULT);
+    return obj.findValue(RESULT);
   }
 
   protected ArrayNode parseResults(JsonNode obj, String key) {
-    if (obj.get(key) instanceof NullNode) {
+    if (obj.findValue(key) instanceof NullNode) {
       return null;
     }
-    return (ArrayNode) obj.get(key);
+    return (ArrayNode) obj.findValue(key);
   }
 
   /**
