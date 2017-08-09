@@ -70,6 +70,10 @@ public class JavaConnectionManager {
     }
   }
 
+  public boolean isConnected() {
+    return isConnected;
+  }
+
   public void connect(HostConfig config) {
     if (isConnected) {
       // TODO throw exception
@@ -83,6 +87,7 @@ public class JavaConnectionManager {
       socket.connect(address);
       bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
       startParsingIncomingMessages();
+      isConnected = true;
       notifyConnected();
     }
     catch (UnknownHostException e) {
@@ -106,6 +111,7 @@ public class JavaConnectionManager {
   private void startParsingIncomingMessages() {
     new Thread() {
 
+      @Override
       public void run() {
         final JsonFactory jf = OM.getJsonFactory();
         JsonParser jp;
@@ -118,7 +124,7 @@ public class JavaConnectionManager {
         }
         catch (Exception e) {
           disconnect();
-          e.printStackTrace();
+          // e.printStackTrace();
         }
       };
 
@@ -145,6 +151,7 @@ public class JavaConnectionManager {
         e.printStackTrace();
       }
       notifyDisconnect();
+      isConnected = false;
     }
     else {
       // TODO throw exception
@@ -196,7 +203,7 @@ public class JavaConnectionManager {
    */
   private void writeSocket(AbstractCall<?> call) {
     final String data = call.getRequest().toString();
-    LOGGER.debug("CALL: " + data);
+    LOGGER.debug("CALL: {}", data);
     try {
       bufferedWriter.write(data + "\n");
       bufferedWriter.flush();
