@@ -21,6 +21,8 @@
 
 package org.tinymediamanager.jsonrpc.config;
 
+import java.util.Locale;
+
 /**
  * A set of configuration data needed to connect to an XBMC host.
  * 
@@ -49,6 +51,14 @@ public class HostConfig {
    */
   public final String mPassword;
 
+  private static int  DEFAULT_HTTP_PORT = 8080;
+
+  static {
+    if (System.getProperty("os.name").toLowerCase(Locale.ROOT).contains("windows")) {
+      DEFAULT_HTTP_PORT = 80;
+    }
+  }
+
   /**
    * Creates a new XBMC host object.
    * 
@@ -56,7 +66,7 @@ public class HostConfig {
    *          IP or host adress of XBMC
    */
   public HostConfig(String address) {
-    this(address, 8080);
+    this(address, DEFAULT_HTTP_PORT);
   }
 
   /**

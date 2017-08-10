@@ -3,6 +3,7 @@ package org.tinymediamanager.jsonrpc.io;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -79,10 +80,9 @@ public class JavaConnectionManager {
     return isConnected;
   }
 
-  public void connect(HostConfig config) {
+  public void connect(HostConfig config) throws ApiException {
     if (isConnected) {
-      // TODO throw exception
-      return;
+      disconnect();
     }
     this.hostConfig = config;
     try {
@@ -97,11 +97,15 @@ public class JavaConnectionManager {
     }
     catch (UnknownHostException e) {
       disconnect();
-      e.printStackTrace();
+      throw new ApiException(ApiException.IO_UNKNOWN_HOST, e.getMessage(), e);
+    }
+    catch (ConnectException e) {
+      disconnect();
+      throw new ApiException(ApiException.IO_EXCEPTION_WHILE_OPENING, e.getMessage(), e);
     }
     catch (IOException e) {
       disconnect();
-      e.printStackTrace();
+      throw new ApiException(ApiException.IO_EXCEPTION, e.getMessage(), e);
     }
   }
 
@@ -109,7 +113,7 @@ public class JavaConnectionManager {
     return hostConfig;
   }
 
-  public void reconnect() {
+  public void reconnect() throws ApiException {
     connect(hostConfig);
   }
 

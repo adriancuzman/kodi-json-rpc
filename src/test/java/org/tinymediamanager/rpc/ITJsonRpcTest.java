@@ -8,7 +8,6 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Locale;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -26,12 +25,13 @@ import org.tinymediamanager.jsonrpc.api.model.VideoModel.MovieFields;
 import org.tinymediamanager.jsonrpc.api.model.VideoModel.TVShowDetail;
 import org.tinymediamanager.jsonrpc.config.HostConfig;
 import org.tinymediamanager.jsonrpc.io.ApiCallback;
+import org.tinymediamanager.jsonrpc.io.ApiException;
 import org.tinymediamanager.jsonrpc.io.ConnectionListener;
 import org.tinymediamanager.jsonrpc.io.JavaConnectionManager;
 import org.tinymediamanager.jsonrpc.notification.AbstractEvent;
 
-public class JsonRpcTest {
-  private static final Logger          LOGGER = LoggerFactory.getLogger(JsonRpcTest.class);
+public class ITJsonRpcTest {
+  private static final Logger          LOGGER = LoggerFactory.getLogger(ITJsonRpcTest.class);
 
   // *************************************************************************************
   // you need to enable Kodi -> remote control from OTHER machines (to open TCP port 9090)
@@ -197,17 +197,9 @@ public class JsonRpcTest {
     });
   }
 
-  private static final int getDefaultHttpPort() {
-    int ret = 80;
-    if (!System.getProperty("os.name").toLowerCase(Locale.ROOT).contains("windows")) {
-      ret = 8080;
-    }
-    return ret;
-  }
-
   @BeforeClass
-  public static void setUp() {
-    HostConfig config = new HostConfig("127.0.0.1", getDefaultHttpPort(), 9090);
+  public static void setUp() throws ApiException {
+    HostConfig config = new HostConfig("127.0.0.1");
     cm.registerConnectionListener(new ConnectionListener() {
 
       @Override

@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
@@ -35,6 +36,8 @@ import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.node.ObjectNode;
 import org.codehaus.jackson.node.TextNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.tinymediamanager.jsonrpc.config.HostConfig;
 
 /**
@@ -47,9 +50,9 @@ import org.tinymediamanager.jsonrpc.config.HostConfig;
  */
 public class JsonApiRequest {
 
+  private static final Logger       LOGGER          = LoggerFactory.getLogger(JsonApiRequest.class);
   private static final String       TAG             = JsonApiRequest.class.getSimpleName();
-
-  private static final int          REQUEST_TIMEOUT = 5000;                                // 5 sec
+  private static final int          REQUEST_TIMEOUT = 5000;                                         // 5 sec
   private static final ObjectMapper OM              = new ObjectMapper();
 
   /**
@@ -64,6 +67,7 @@ public class JsonApiRequest {
    */
   public static ObjectNode execute(HostConfig config, ObjectNode entity) throws ApiException {
     String response = postRequest(config, entity.toString());
+    LOGGER.debug("Response: {}", response);
     return parseResponse(response);
   }
 
@@ -96,6 +100,7 @@ public class JsonApiRequest {
 
       conn.setDoOutput(true);
 
+      LOGGER.debug("CALL: {}", entity.toString());
       try {
         OutputStreamWriter output = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");
         output.write(entity);
@@ -167,6 +172,9 @@ public class JsonApiRequest {
     catch (SocketTimeoutException e) {
       throw new ApiException(ApiException.IO_SOCKETTIMEOUT, e.getMessage(), e);
     }
+    catch (ConnectException e) {
+      throw new ApiException(ApiException.IO_EXCEPTION_WHILE_OPENING, e.getMessage(), e);
+    }
     catch (IOException e) {
       throw new ApiException(ApiException.IO_EXCEPTION, e.getMessage(), e);
     }
@@ -223,6 +231,6 @@ public class JsonApiRequest {
    * @return String containing the user agent
    */
   private static String buildUserAgent() {
-    return "xbmc-jsonrpclib-android";
+    return "tinyMediaManager-jsonrpclib-kodi";
   }
 }

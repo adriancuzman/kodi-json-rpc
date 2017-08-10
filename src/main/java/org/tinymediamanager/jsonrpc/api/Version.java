@@ -118,7 +118,7 @@ public class Version {
    * @author freezy <freezy@xbmc.org>
    */
   public enum Branch {
-    EDEN, FRODO, GOTHAM, HELIX, ISENGARD, JARVIS, KRYPTON, MASTER, UNKNOWN
+    EDEN, FRODO, GOTHAM, HELIX, ISENGARD, JARVIS, KRYPTON, LEIA, MASTER, UNKNOWN
   }
 
   /**

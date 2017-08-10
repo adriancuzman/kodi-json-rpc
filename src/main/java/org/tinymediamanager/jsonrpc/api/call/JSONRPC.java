@@ -21,6 +21,7 @@
 package org.tinymediamanager.jsonrpc.api.call;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.codehaus.jackson.JsonNode;
@@ -319,14 +320,25 @@ public final class JSONRPC {
     public static class VersionResult extends AbstractModel {
 
       // field names
-      public static final String MAJOR = "major";
-      public static final String MINOR = "minor";
-      public static final String PATCH = "patch";
-
+      public static final String                  MAJOR = "major";
+      public static final String                  MINOR = "minor";
+      public static final String                  PATCH = "patch";
+      public static final HashMap<String, String> CODENAME;
+      static {
+        CODENAME = new HashMap<String, String>();
+        CODENAME.put("8.3.0", "Kodi 18 (Leia)");
+        CODENAME.put("8.0.0", "Kodi 17 (Krypton)");
+        CODENAME.put("6.32.5", "Kodi 16.1 (Jarvis)");
+        CODENAME.put("6.32.4", "Kodi 16.0 (Jarvis)");
+        CODENAME.put("6.25.2", "Kodi 15 (Isengard)");
+        CODENAME.put("6.21.2", "Kodi 14 (Helix)");
+        CODENAME.put("6.14.3", "XBMC 13 (Gotham)");
+        // don't care about the rest...
+      }
       // class members
-      public final Integer       major;
-      public final Integer       minor;
-      public final Integer       patch;
+      public final Integer major;
+      public final Integer minor;
+      public final Integer patch;
 
       /**
        * @param major
@@ -342,6 +354,23 @@ public final class JSONRPC {
       @Override
       public String toString() {
         return major + "." + minor + "." + patch;
+      }
+
+      public String getKodiVersion() {
+        String cn = CODENAME.get(toString());
+        if (cn == null) {
+          // https://github.com/xbmc/xbmc/blob/master/xbmc/interfaces/json-rpc/schema/version.txt
+          if (major > 8) {
+            cn = "Krypton";
+            if (minor > 3) {
+              cn = "Leia";
+            }
+          }
+          else {
+            cn = "Unknown";
+          }
+        }
+        return cn;
       }
 
       /**
@@ -361,9 +390,9 @@ public final class JSONRPC {
        *          JSON object representing a VersionResult object
        */
       public VersionResult(JsonNode node) {
-        major = node.get(MAJOR).getIntValue(); // required value
-        minor = node.get(MINOR).getIntValue(); // required value
-        patch = node.get(PATCH).getIntValue(); // required value
+        major = node.findValue(MAJOR).getIntValue(); // required value
+        minor = node.findValue(MINOR).getIntValue(); // required value
+        patch = node.findValue(PATCH).getIntValue(); // required value
       }
 
       @Override
