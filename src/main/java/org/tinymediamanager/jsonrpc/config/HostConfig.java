@@ -127,8 +127,8 @@ public class HostConfig {
    */
   public HostConfig(String address, int httpPort, int tcpPort, String username, String password) {
     mAddress = address;
-    mHttpPort = httpPort;
-    mTcpPort = tcpPort;
+    mHttpPort = httpPort == 0 ? DEFAULT_HTTP_PORT : httpPort;
+    mTcpPort = tcpPort == 0 ? 9090 : tcpPort;
     mUsername = username;
     mPassword = password;
   }
