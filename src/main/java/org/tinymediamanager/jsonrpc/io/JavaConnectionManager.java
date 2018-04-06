@@ -8,8 +8,9 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonNode;
@@ -23,30 +24,30 @@ import org.tinymediamanager.jsonrpc.config.HostConfig;
 import org.tinymediamanager.jsonrpc.notification.AbstractEvent;
 
 public class JavaConnectionManager {
-  private static final Logger                    LOGGER             = LoggerFactory.getLogger(JavaConnectionManager.class);
-  private final List<ConnectionListener>         connectionListener = new ArrayList<ConnectionListener>();
+  private static final Logger                LOGGER             = LoggerFactory.getLogger(JavaConnectionManager.class);
+  private final List<ConnectionListener>     connectionListener = new ArrayList<ConnectionListener>();
   /**
    * Since we can't return the de-serialized object from the service, put the response back into the received one and return the received one.
    */
-  private final HashMap<String, CallRequest<?>>  mCallRequests      = new HashMap<String, CallRequest<?>>();
+  private final Map<String, CallRequest<?>>  mCallRequests      = new ConcurrentHashMap<String, CallRequest<?>>();
 
-  private final HashMap<String, AbstractCall<?>> mCalls             = new HashMap<String, AbstractCall<?>>();
+  private final Map<String, AbstractCall<?>> mCalls             = new ConcurrentHashMap<String, AbstractCall<?>>();
 
-  private boolean                                isConnected        = false;
+  private boolean                            isConnected        = false;
 
-  private Socket                                 socket;
-  private BufferedWriter                         bufferedWriter;
+  private Socket                             socket;
+  private BufferedWriter                     bufferedWriter;
 
-  private HostConfig                             hostConfig;
+  private HostConfig                         hostConfig;
 
   /**
    * Static reference to Jackson's object mapper.
    */
-  private final static ObjectMapper              OM                 = new ObjectMapper();
+  private final static ObjectMapper          OM                 = new ObjectMapper();
 
   /**
    * Executes a JSON-RPC request with the full result in the callback.
-   * 
+   *
    * @param call
    *          Call to execute
    * @param callback
@@ -133,6 +134,7 @@ public class JavaConnectionManager {
         }
         catch (Exception e) {
           disconnect();
+          LOGGER.error("", e);
           // e.printStackTrace();
         }
       };
@@ -169,10 +171,28 @@ public class JavaConnectionManager {
 
   @SuppressWarnings({ "rawtypes", "unchecked" })
   private void notifyClients(JsonNode node) {
-    final HashMap<String, AbstractCall<?>> calls = mCalls;
     if (node.has("error")) {
-      // notifyError(new ApiException(node),
-      // node.get("id").getValueAsText());
+      final String id = node.get("id").getValueAsText();
+      if (mCallRequests.containsKey(id)) {
+        CallRequest callRequest = mCallRequests.remove(id);
+        mCalls.remove(id);
+        ApiCallback callback = callRequest.mCallback;
+        AbstractCall call = callRequest.mCall;
+        JsonNode errorNode = node.get("error");
+        int errorCode = -1;
+        if (errorNode.has("code"))
+          errorCode = errorNode.get("code").getIntValue();
+        String message = "";
+        if (errorNode.has("message"))
+          message = errorNode.get("message").getTextValue();
+        String hint = "";
+        if (errorNode.has("data"))
+          hint = errorNode.get("data").toString();
+        callback.onError(errorCode, message, hint);
+      }
+      else {
+        LOGGER.error("No such request for id {}: ERROR={}", id, node.toString());
+      }
       // TODO
       // check if notification or api call
     }
@@ -180,14 +200,15 @@ public class JavaConnectionManager {
       // it's api call.
       final String id = node.get("id").getValueAsText();
       if (mCallRequests.containsKey(id)) {
-        CallRequest callRequest = mCallRequests.get(id);
+        CallRequest callRequest = mCallRequests.remove(id);
+        mCalls.remove(id);
         ApiCallback callback = callRequest.mCallback;
         AbstractCall call = callRequest.mCall;
         call.setResponse(node);
         callback.onResponse(call);
       }
       else {
-        // TODO
+        LOGGER.error("No such request for id {}: DATA={}", id, node.toString());
       }
     }
     else {
@@ -207,7 +228,7 @@ public class JavaConnectionManager {
 
   /**
    * Serializes the API request and dumps it on the socket.
-   * 
+   *
    * @param call
    */
   private void writeSocket(AbstractCall<?> call) {
@@ -224,7 +245,7 @@ public class JavaConnectionManager {
 
   /**
    * A call request bundles an API call and its callback of the same type.
-   * 
+   *
    * @author freezy <freezy@xbmc.org>
    */
   private static class CallRequest<T> {
